@@ -49,6 +49,11 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests -f JsonUtilModule/pom.xml
 
+      - name: Publish to GitHub Packages
+        run: mvn deploy -DskipTests -f JsonUtilModule/pom.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get version from git tags
         id: version
         run: |
